@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4686289011639479825, guid: defdc631ddc4e49f38ca152fe3780025, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 966612488}
   projectileSpeed: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
