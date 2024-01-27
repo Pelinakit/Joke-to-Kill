@@ -6,10 +6,26 @@ public class ObjectSpawner : MonoBehaviour
 {
     public GameObject prefabToSpawn;
     public Transform spawnPoint;
+    public float spawnRate = 2;
+    private float timer = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
         SpawnObject();
+    }
+
+    void Update()
+    {
+        if (timer < spawnRate)
+        {
+            timer = timer + Time.deltaTime;
+        }
+        else
+        {
+            SpawnObject();
+            timer = 0;
+        }
     }
    
     void SpawnObject()
