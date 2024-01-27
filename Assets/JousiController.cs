@@ -21,11 +21,11 @@ public class JousiController : MonoBehaviour
     void Shoot()
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         
         if (projectileRb != null)
         {
-            projectileRb.AddForce(Vector3.up * projectileSpeed, ForceMode.VelocityChange);
+            projectileRb.AddForce(Vector2.up * projectileSpeed, ForceMode2D.Impulse);
         }
     }
 }
