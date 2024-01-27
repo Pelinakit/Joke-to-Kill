@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3954132404719932522}
   - component: {fileID: 9099614415050763966}
   - component: {fileID: -2908276300154524308}
+  - component: {fileID: -3883401837530147498}
   m_Layer: 0
   m_Name: beet
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5191174926198901144, guid: 7eeb4140401de7a4c8eb8388ff428e1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -142,9 +143,21 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.81, y: 3.16}
   m_Direction: 0
+--- !u!114 &-3883401837530147498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686289011639479825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96a65b88a2b544e589ef6bbfa220490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
