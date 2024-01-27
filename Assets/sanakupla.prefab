@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -1932162920246024997}
   - component: {fileID: 4813009187171540086}
   - component: {fileID: 1312097074426004657}
+  - component: {fileID: -4612188494683427326}
   m_Layer: 0
   m_Name: sanakupla
   m_TagString: Untagged
@@ -217,3 +218,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4612188494683427326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847978205619686880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b150f7887d2c847ccb14b26d038a207f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
