@@ -8,7 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     public Transform spawnPoint;
     public float spawnRate = 2;
     private float timer = 0;
-    
+
     // Start is called before the first frame update
     void Start()
     {

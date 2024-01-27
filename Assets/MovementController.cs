@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float deadZone = -25;
 
     // Start is called before the first frame update
     void Update()
@@ -16,5 +17,11 @@ public class MovementController : MonoBehaviour
     void MoveObject()
     {
         transform.position = transform.position + Vector3.left * moveSpeed * Time.deltaTime;
+         
+         if (transform.position.x < deadZone)
+        {
+            Debug.Log("Bubble Deleted");
+            Destroy(gameObject);
+        }
     }
 }
