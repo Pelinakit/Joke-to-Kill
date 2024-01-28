@@ -31,33 +31,24 @@ public class ObjectSpawner : MonoBehaviour
 
     void SpawnObject()
     {
-        if (prefabToSpawn != null && spawnPoint != null)
+        GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+        float randomY = Random.Range(0f, 4f); // Randomize y within a range, for example -5 to 5
+        Vector2 randomizedSpawnPoint = new Vector2(spawnPoint.position.x, spawnPoint.position.y + randomY);
+        spawnedObject.transform.position = randomizedSpawnPoint;
+
+        // Find the TMP component within the spawned object
+        Canvas canvas = spawnedObject.GetComponentInChildren<Canvas>();
+        TextMeshProUGUI textMeshPro = canvas.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (textMeshPro != null)
         {
-            GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
-
-            // Output information about all children to the debug log
-            Debug.Log("Children of the spawned object:");
-
-            for (int i = 0; i < spawnedObject.transform.childCount; i++)
-            {
-                Transform child = spawnedObject.transform.GetChild(i);
-                Debug.Log("Child " + i + ": " + child.name);
-            }
-
-            // Optionally, find and log specific components of the children
-            TextMeshProUGUI textMeshProComponent = spawnedObject.GetComponentInChildren<TextMeshProUGUI>();
-            if (textMeshProComponent != null)
-            {
-                Debug.Log("TextMeshPro Component found in children: " + textMeshProComponent.text);
-            }
-            else
-            {
-                Debug.LogError("TextMeshPro component not found in the children of the spawned object.");
-            }
+            // Change the text of the TMP component
+            string[] words = { "potato", "irrigation", "farmer", "tractor", "farm", "seedling", "harvest", "pesticides", "crop", "russet", "field", "sowing", "fertilizer", "mulch", "market", "barn", "fries", "fungicides", "plowing", "sustainability" };
+            textMeshPro.text = words[Random.Range(0, words.Length)];
         }
         else
         {
-            Debug.LogError("Prefab or spawn point not set in Object Spawner script.");
+            Debug.LogWarning("TextMeshPro component not found in the spawned object.");
         }
     }
 
