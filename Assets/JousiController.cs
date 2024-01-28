@@ -18,11 +18,11 @@ public class JousiController : MonoBehaviour
         Vector2 direction = worldPos - (Vector2)transform.position;
 
         // Calculate the rotation angle in degrees
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
 
         // Rotate the crossbow to face the mouse cursor
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -32,14 +32,14 @@ public class JousiController : MonoBehaviour
 
     void Shoot()
     {
-        // Offset the rotation by 270 degrees to make the arrow move upward
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, 270f));
+        // Use the same rotation as the firePoint
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
 
         if (projectileRb != null)
         {
             // Calculate the shooting direction based on the rotated firePoint
-            Vector2 shootDirection = new Vector2(Mathf.Cos(Mathf.Deg2Rad * firePoint.eulerAngles.z), Mathf.Sin(Mathf.Deg2Rad * firePoint.eulerAngles.z));
+            Vector2 shootDirection = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * firePoint.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * firePoint.eulerAngles.z));
 
             // Use the calculated direction to determine the shooting direction
             projectileRb.velocity = shootDirection * projectileSpeed;
