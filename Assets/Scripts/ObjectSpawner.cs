@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 
@@ -57,17 +58,15 @@ public class ObjectSpawner : MonoBehaviour
         if (textMeshPro != null)
         {
             // Change the text of the TMP component
-            string[] nouns = { "potato", "irrigation", "farmer", "tractor", "farm", "seedling", "harvest", "pesticides", "crop", "russet", "field", "sowing", "fertilizer", "mulch", "market", "barn", "fries", "fungicides", "plowing", "sustainability" };
-            string[] prepositions = { "above", "across", "against", "along", "among", "around", "at", "before", "behind", "below", "beneath", "beside", "between", "by", "down", "during", "for", "from", "in", "inside", "into", "near", "of", "off", "on", "out", "over", "through", "to", "under", "up", "with", "within", "without" };
-            string[] adjectives = { "happy", "sad", "angry", "excited", "bored", "tired", "hungry", "thirsty", "scared", "nervous", "confused", "surprised", "cold", "hot", "sick", "healthy", "strong", "weak", "lazy", "busy" };
-            string[] verbs = { "run", "jump", "swim", "fly", "eat", "drink", "sleep", "read", "write", "play", "work", "study", "sing", "dance", "laugh", "cry", "talk", "listen", "watch", "think" };
-            List<string> wordsList = new List<string>();
-            wordsList.AddRange(nouns);
-            wordsList.AddRange(prepositions);
-            wordsList.AddRange(adjectives);
-            wordsList.AddRange(verbs);
-            string[] words = wordsList.ToArray();
+            string[] nouns = { "potato", "farmer", "tractor", "farm", "seedling", "harvest", "crop", "field", "fertilizer", "market", "barn", "fries", "dog", "cat", "tree", "house", "car", "book", "phone", "ball" };
+            string[] prepositions = { "above", "across", "against", "along", "among", "around", "at", "before", "behind", "below", "beside", "between", "by", "down", "during", "in", "near", "of", "off", "on", "over", "through", "to", "under", "with" };
+            string[] adjectives = { "happy", "sad", "big", "small", "tall", "short", "long", "young", "old", "fast", "slow", "hot", "cold", "loud", "quiet", "bright", "dark", "heavy", "light", "strong" };
+            string[] verbs = { "run", "jump", "work", "play", "eat", "drink", "sleep", "read", "write", "talk", "listen", "watch", "think", "grow", "harvest", "build", "cook", "clean", "drive", "study" };
+            string[] adverbs = { "quickly", "slowly", "carefully", "easily", "quietly", "loudly", "happily", "sadly", "daily", "never", "always", "often", "rarely", "sometimes", "usually", "accidentally", "fortunately", "honestly", "seriously", "simply" };
+
+            string[] words = nouns.Concat(prepositions).Concat(adjectives).Concat(verbs).Concat(adverbs).ToArray();
             textMeshPro.text = words[Random.Range(0, words.Length)];
+
         }
         else
         {
