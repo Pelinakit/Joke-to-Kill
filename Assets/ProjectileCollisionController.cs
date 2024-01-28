@@ -25,8 +25,15 @@ public class ProjectileCollisionController : MonoBehaviour
                 Debug.LogWarning("TextMeshPro component not found in the collided object.");
             }
         }
-        Destroy(collision.gameObject); // This line destroys the object that was hit
-        Destroy(gameObject); // This line destroys the projectile
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if (!audioSource.enabled)
+        {
+            audioSource.enabled = true;
+        }
+        audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/Poksahdukset/pop"));
+        Destroy(collision.gameObject);
+        //Destroy(gameObject);
+
     }
     void UpdateJokebox(List<string> words)
     {

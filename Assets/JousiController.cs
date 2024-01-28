@@ -5,6 +5,7 @@ public class JousiController : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     public float projectileSpeed = 10f;
+    public float offScreenBoundary = 1.0f;
 
     void Update()
     {
@@ -28,6 +29,8 @@ public class JousiController : MonoBehaviour
         {
             Shoot();
         }
+
+        DestroyOffScreenProjectiles();
     }
 
     void Shoot()
@@ -49,6 +52,20 @@ public class JousiController : MonoBehaviour
         projectile.AddComponent<ArrowProjectile>();
     }
 
+    void DestroyOffScreenProjectiles()
+    {
+        // Find all projectiles currently in the scene
+        foreach (var projectile in GameObject.FindGameObjectsWithTag("Projectile"))
+        {
+            Vector2 viewportPosition = Camera.main.WorldToViewportPoint(projectile.transform.position);
 
+            // Check if the projectile is outside the viewport bounds
+            if (viewportPosition.x < -offScreenBoundary || viewportPosition.x > 1 + offScreenBoundary ||
+                viewportPosition.y < -offScreenBoundary || viewportPosition.y > 1 + offScreenBoundary)
+            {
+                Destroy(projectile);
+            }
+        }
+    }
 
 }
