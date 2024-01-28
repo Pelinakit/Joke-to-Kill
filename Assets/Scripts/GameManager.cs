@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour
         Debug.Log(mainCanvas);
         TextMeshProUGUI jokeText = mainCanvas.transform.Find("JokeContainer/Imagebg/JokeText").GetComponent<TextMeshProUGUI>();
         Debug.Log(jokeText);
-        StartCoroutine(wordJurdge.GetChatCompletion("Anthropomorphic Potato who is also a Farmer", jokeText.text));
+        StartCoroutine(wordJurdge.GetChatCompletion("a Living Potato", jokeText.text));
     }
 }

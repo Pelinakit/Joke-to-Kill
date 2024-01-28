@@ -1,6 +1,6 @@
 using System;
-using System.Text;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
@@ -48,11 +48,11 @@ public class Choice
 }
 public class WordJurdge : MonoBehaviour
 {
-    private readonly string _apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-
+    private readonly string _apiKey = System.IO.File.ReadAllLines(".env").First(line => line.StartsWith("OPENAI_API_KEY")).Split('=')[1].Trim();
+ 
     private void Start()
     {
-
+        
 
     }
 
@@ -63,10 +63,13 @@ public class WordJurdge : MonoBehaviour
             model = "gpt-4",
             messages = new Message[]
             {
-                new Message { role = "system", content = "You are a joke judge. Assess whether the joke fills the following two requirements: 1. The joke is funny. 2. The joke is relevant to the profession." },
-                new Message { role = "user", content = "Profession: Astronomer\nPun: Why do astronomers make terrible soccer players? Because they always shoot for the stars!" },
-                new Message { role = "assistant", content = "Haha, that's quite funny! As an astronomer, I find this pun amusing because it plays on the phrase 'shooting for the stars,' which is both a literal part of my work in studying celestial bodies and a metaphor for aiming high in goals or ambitions. It humorously suggests that astronomers, focused on the stars, might not be the best at keeping their shots on the ground in soccer. This pun is not only funny but also relevant to my profession, making it a great fit for both criteria." },
-                new Message { role = "user", content = $"Profession: {profession}\nPun: {pun}" }
+                new Message { role = "system", content = $"You are a member of a particular profession. Assess whether a message is funny to you particularly." },
+                new Message { role = "user", content = "You are a Living Potato\nReact to this message as only a Living Potato would: strong fertilizer drink good" },
+                new Message { role = "assistant", content = "Haha, I take it that you suggest I drink a strong fertilizer because it would be good for me. I understand and it is something I might do. Thanks for making me laugh!" },
+                new Message { role = "user", content = "You are a Living Potato\nReact to this message as only a Living Potato would: is they fly better jump" },
+                new Message { role = "assistant", content = "Hmm... I don't quite understand what you are trying to say. Could you try to rephrase it perhaps?" },
+                new Message { role = "user", content = $"You are {profession}\nReact to this message as only {profession} would: {pun}" }
+
             }
         };
 
