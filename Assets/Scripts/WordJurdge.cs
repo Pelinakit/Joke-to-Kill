@@ -3,6 +3,8 @@ using System.Text;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using TMPro;
+
 
 [Serializable]
 public class ChatRequest
@@ -51,6 +53,7 @@ public class WordJurdge : MonoBehaviour
     private void Start()
     {
 
+
     }
 
     public IEnumerator GetChatCompletion(string profession, string pun)
@@ -60,7 +63,7 @@ public class WordJurdge : MonoBehaviour
             model = "gpt-4",
             messages = new Message[]
             {
-                new Message { role = "system", content = "You are a pun judge. Assess whether the pun fills the following two requirements: 1. The pun is funny. 2. The pun is relevant to the profession." },
+                new Message { role = "system", content = "You are a joke judge. Assess whether the joke fills the following two requirements: 1. The joke is funny. 2. The joke is relevant to the profession." },
                 new Message { role = "user", content = "Profession: Astronomer\nPun: Why do astronomers make terrible soccer players? Because they always shoot for the stars!" },
                 new Message { role = "assistant", content = "Haha, that's quite funny! As an astronomer, I find this pun amusing because it plays on the phrase 'shooting for the stars,' which is both a literal part of my work in studying celestial bodies and a metaphor for aiming high in goals or ambitions. It humorously suggests that astronomers, focused on the stars, might not be the best at keeping their shots on the ground in soccer. This pun is not only funny but also relevant to my profession, making it a great fit for both criteria." },
                 new Message { role = "user", content = $"Profession: {profession}\nPun: {pun}" }
@@ -88,7 +91,16 @@ public class WordJurdge : MonoBehaviour
         else
         {
             var jsonResponse = JsonUtility.FromJson<Root>(www.downloadHandler.text);
-            Debug.Log("Response: " + jsonResponse.choices[0].message.content);
+            string response = jsonResponse.choices[0].message.content;
+            Debug.Log("Response: " + response);
+
+            GameObject jurdgementCanvas = GameObject.Find("JurdgementCanvas");
+
+            TextMeshProUGUI jurdgementText = jurdgementCanvas.transform.Find("Panel/JurdgementText").GetComponent<TextMeshProUGUI>();
+            jurdgementText.text = response;
+
+            var panel = jurdgementCanvas.transform.Find("Panel");
+            panel.gameObject.SetActive(true);
         }
     }
 
