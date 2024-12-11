@@ -45,7 +45,7 @@ public class JousiController : MonoBehaviour
             Vector2 shootDirection = new Vector2(-Mathf.Sin(Mathf.Deg2Rad * firePoint.eulerAngles.z), Mathf.Cos(Mathf.Deg2Rad * firePoint.eulerAngles.z));
 
             // Use the calculated direction to determine the shooting direction
-            projectileRb.velocity = shootDirection * projectileSpeed;
+            projectileRb.linearVelocity = shootDirection * projectileSpeed;
         }
 
         // Attach the ArrowProjectile script to the instantiated arrow

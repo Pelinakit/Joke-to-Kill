@@ -32,7 +32,7 @@ public class RandomizeTextOnMove : MonoBehaviour
     void Update()
     {
         // Move the object
-        rb2D.velocity = new Vector2(moveSpeed, 0f);
+        rb2D.linearVelocity = new Vector2(moveSpeed, 0f);
     }
 
     void RandomizeWord()
