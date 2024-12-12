@@ -60,7 +60,7 @@ public class WordJurdge : MonoBehaviour
     {
         var request = new ChatRequest
         {
-            model = "gpt-4",
+            model = "gpt-4o-mini",
             messages = new Message[]
             {
                 new Message { role = "system", content = $"You are a member of a particular profession. Assess whether a message is funny to you particularly." },
